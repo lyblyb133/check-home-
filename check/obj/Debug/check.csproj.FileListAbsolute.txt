@@ -1,0 +1,9 @@
+E:\check\check\check\bin\Debug\check.exe
+E:\check\check\check\bin\Debug\check.pdb
+E:\check\check\check\obj\Debug\check.csprojAssemblyReference.cache
+E:\check\check\check\obj\Debug\check.Form1.resources
+E:\check\check\check\obj\Debug\check.Properties.Resources.resources
+E:\check\check\check\obj\Debug\check.csproj.GenerateResource.cache
+E:\check\check\check\obj\Debug\check.csproj.CoreCompileInputs.cache
+E:\check\check\check\obj\Debug\check.exe
+E:\check\check\check\obj\Debug\check.pdb
