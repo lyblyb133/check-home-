@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Data.OleDb;
+using System.IO;
+
 
 namespace check
 {
@@ -34,7 +36,7 @@ namespace check
             openFileDialog1.RestoreDirectory = true;
 
             //过滤文件类型
-            openFileDialog1.Filter = "dbf文件 (*.dbf)|*.dbf|所有文件 (*.*)|*.*";
+            openFileDialog1.Filter = "txt文件 (*.txt)|*.txt|所有文件 (*.*)|*.*";
 
             //FilterIndex 与 Filter 关联对应，用于设置默认显示的文件类型
             openFileDialog1.FilterIndex = 1;//默认是1，则默认显示的文件类型为*.txt；如果设置为2，则默认显示的文件类型是*.*
@@ -54,24 +56,26 @@ namespace check
 
         private void button3_Click(object sender, EventArgs e)
         {
-            try
+            string Path;
+            Path = textBox1.Text;
+            int i= Path.LastIndexOf("\\");
+            richTextBox1.Text = Path.Substring(0,i+1);
+            string Path1= Path.Substring(0, i + 1);
+            textBox2.Text = i.ToString();
+            var files = Directory.GetFiles(Path1, "*.txt");
+            textBox3.Text = files.Length.ToString();
+            for (int j=0;j<files.Length;j++)
             {
-                string strOledbCon = @"Provider=vfpoledb;Data Source=e:\check\dbf;Collating Sequence=machine;";//设置连接字符串
-                using (OleDbConnection OledbCon = new OleDbConnection())
-                {
-                    OledbCon.ConnectionString = strOledbCon;
-                    OledbCon.Open();
-                    OleDbDataAdapter OledbDat = new OleDbDataAdapter("select * from zjlb.DBF", strOledbCon);
-                    DataTable dt = new DataTable();
-                    OledbDat.Fill(dt);
-                    
-                    //return mySet;
-                }
+                
             }
-            catch (Exception y)
-            {
-                MessageBox.Show(y.Message);
-            }
+            
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string[] s = { "111", "222", "333", "444" };
+            string str1 = string.Join("\r\n", s);
+            richTextBox1.Text = str1;
         }
     }
 }
