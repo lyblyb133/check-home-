@@ -59,16 +59,27 @@ namespace check
             string Path;
             Path = textBox1.Text;
             int i= Path.LastIndexOf("\\");
-            richTextBox1.Text = Path.Substring(0,i+1);
             string Path1= Path.Substring(0, i + 1);
-            textBox2.Text = i.ToString();
-            var files = Directory.GetFiles(Path1, "*.txt");
-            textBox3.Text = files.Length.ToString();
-            for (int j=0;j<files.Length;j++)
+            //textBox2.Text = i.ToString();
+            //var files = Directory.GetFiles(Path1, "*.txt");
+            //richTextBox1.Text = string.Join("\r\n",files);
+            string line;
+            string[] lines=new string[50];
+            int iXH = 0;
+            System.IO.StreamReader file = new System.IO.StreamReader(textBox1.Text, Encoding.Default);
+            while ((line = file.ReadLine()) != null)
             {
-                
+                lines[iXH] = line;//这里的Line就是您要的的数据了
+                iXH++;//计数,总共几行
             }
-            
+            file.Close();//关闭文件读取流
+            textBox2.Text = lines[0];
+            i = lines[0].IndexOf("手续费模板名称");
+            if (i<1)
+            {
+                MessageBox.Show("此文件不是手续费模板！请重新选择！");
+                return;
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
